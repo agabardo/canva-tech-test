@@ -1,7 +1,21 @@
 package com.example;
 
+import com.amazonaws.services.sqs.model.Message;
+
 public class FileQueueService implements QueueService {
-    //
-    // Task 3: Implement me if you have time.
-    //
+
+    @Override
+    public void sendMessage(String queueUrl, String messageBody) {
+
+    }
+
+    @Override
+    public Message receiveMessage(String queueUrl) {
+        return null;
+    }
+
+    @Override
+    public void deleteMessage(String queueUrl, String receiptHandle) {
+
+    }
 }
