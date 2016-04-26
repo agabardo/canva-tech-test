@@ -3,13 +3,13 @@ package com.example;
 import com.amazonaws.services.sqs.model.Message;
 import com.amazonaws.services.sqs.model.QueueDoesNotExistException;
 
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentMap;
 
 public class InMemoryQueueService implements QueueService {
 
-    private HashMap<String, InMemoryQueue> queues;
+    private ConcurrentMap<String, InMemoryQueue> queues;
 
-    public InMemoryQueueService(HashMap<String, InMemoryQueue> queues) {
+    public InMemoryQueueService(ConcurrentMap<String, InMemoryQueue> queues) {
         this.queues = queues;
     }
 

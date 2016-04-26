@@ -2,14 +2,12 @@ package com.example;
 
 import com.amazonaws.services.sqs.model.Message;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.*;
 
 public class InMemoryQueue {
 
-    /*
+    /**
     * TODO: Outstanding tasks :)
     *   Other queue attributes, ie. `MaximumMessageSize`, `MessageRetentionPeriod`, etc.
     *    - Their actual implementation
@@ -17,7 +15,7 @@ public class InMemoryQueue {
     *    - Implement error checking for AWS allowed range of values of other queue attributes,
     *           also should throw the same exception classes
     *  Change `visibilityTimeout`
-    * */
+    */
 
     private int visibilityTimeout = 30;
     private int maximumMessageSize = 262144;
@@ -25,7 +23,7 @@ public class InMemoryQueue {
 
     private ScheduledExecutorService executorService;
     private BlockingQueue<String> messages = new LinkedBlockingQueue<>();
-    private Map<String, ScheduledFuture> inFlightMessages = new HashMap<>();
+    private ConcurrentMap<String, ScheduledFuture> inFlightMessages = new ConcurrentHashMap<>();
 
     public InMemoryQueue(ScheduledExecutorService executorService) {
         this.visibilityTimeout = 30;
